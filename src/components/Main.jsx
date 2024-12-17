@@ -1,3 +1,4 @@
+import { Container, Row } from 'react-bootstrap';
 import ProdutoCard from './ProdutoCard';
 
 const Main = () => {
