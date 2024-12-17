@@ -1,4 +1,4 @@
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import ProdutoCard from './ProdutoCard';
 
 const Main = () => {
   let produtos = [
@@ -26,18 +26,14 @@ const Main = () => {
     <main>
       <Container fluid className="mt-2">
         <Row>
-          {produtos.map((produto, i) => {
+          {produtos.map(({ endereco, titulo, descricao }, indice) => {
             return (
-              <Col key={i}>
-                <Card>
-                  <Card.Img variant="top" src={produto.endereco} />
-                  <Card.Body>
-                    <Card.Title></Card.Title>
-                    <Card.Text></Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
+              <ProdutoCard
+                key={indice}
+                endereco={endereco}
+                titulo={titulo}
+                descricao={descricao}
+              />
             );
           })}
         </Row>
