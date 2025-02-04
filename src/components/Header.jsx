@@ -30,13 +30,13 @@ const Header = () => {
           <MDBCollapse navbar open={openNav}>
             <MDBNavbarNav>
               <MDBNavbarItem>
-                <MDBNavbarLink href="#">Home</MDBNavbarLink>
+                <MDBNavbarLink href="/">Home</MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href="#">Propriedades</MDBNavbarLink>
+                <MDBNavbarLink href="/propriedades">Propriedades</MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href="#">Sobre</MDBNavbarLink>
+                <MDBNavbarLink href="/sobre">Sobre</MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
           </MDBCollapse>
