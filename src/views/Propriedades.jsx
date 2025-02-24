@@ -4,15 +4,20 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import { useState } from 'react';
 
 const Propriedades = () => {
-  const [show, setShow] = useState(false);
-
+  let [show, setShow] = useState(false);
   const handleShow = () => setShow(!show);
 
-  let [nome, setNome] = useState('');
+  let [inputs, setInputs] = useState({
+    nome: '',
+    estado: '',
+    cidade: '',
+    latitude: '',
+    longitude: '',
+  });
 
   const handleChange = (event) => {
-    console.log(nome);
-    setNome(event.target.value);
+    let name = event.target.name;
+    setInputs({ ...inputs, [name]: event.target.value });
   };
 
   return (
@@ -57,19 +62,31 @@ const Propriedades = () => {
                 placeholder="Sítio Aruara"
                 id="nome"
                 name="nome"
-                value={nome}
+                value={inputs.nome}
                 onChange={handleChange}
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Estado</Form.Label>
-              <Form.Control type="text" id="estado" name="estado" />
+              <Form.Control
+                type="text"
+                id="estado"
+                name="estado"
+                value={inputs.estado}
+                onChange={handleChange}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Cidade</Form.Label>
-              <Form.Control type="text" id="cidade" name="cidade" />
+              <Form.Control
+                type="text"
+                id="cidade"
+                name="cidade"
+                value={inputs.cidade}
+                onChange={handleChange}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -79,6 +96,8 @@ const Propriedades = () => {
                 placeholder="12345.6789"
                 id="latitude"
                 name="latitude"
+                value={inputs.latitude}
+                onChange={handleChange}
               />
             </Form.Group>
 
@@ -89,6 +108,8 @@ const Propriedades = () => {
                 placeholder="12345.6789"
                 id="longitude"
                 name="longitude"
+                value={inputs.longitude}
+                onChange={handleChange}
               />
             </Form.Group>
           </Form>
