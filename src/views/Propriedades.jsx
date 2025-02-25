@@ -1,5 +1,5 @@
 import { MDBInput, MDBTooltip } from 'mdb-react-ui-kit';
-import ClientesTable from '../components/ClientesTable';
+import PropriedadesTable from '../components/PropriedadesTable';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import { useState } from 'react';
 
@@ -18,6 +18,15 @@ const Propriedades = () => {
   const handleChange = (event) => {
     let name = event.target.name;
     setInputs({ ...inputs, [name]: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Segurei a vontade de despacho do browser!');
+    // fetch()
+    //   .then((response) => {})
+    //   .catch((error) => {});
+    setShow(!show);
   };
 
   return (
@@ -42,7 +51,7 @@ const Propriedades = () => {
       </div>
 
       {/* Clientes */}
-      <ClientesTable></ClientesTable>
+      <PropriedadesTable></PropriedadesTable>
 
       <Modal
         show={show}
@@ -53,8 +62,8 @@ const Propriedades = () => {
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">Cadastrar</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Body>
             <Form.Group className="mb-3">
               <Form.Label>Nome</Form.Label>
               <Form.Control
@@ -112,16 +121,16 @@ const Propriedades = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleShow}>
-            Fechar
-          </Button>
-          <Button variant="primary" onClick={handleShow}>
-            Adicionar
-          </Button>
-        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleShow}>
+              Fechar
+            </Button>
+            <Button variant="primary" type="submit">
+              Adicionar
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );
