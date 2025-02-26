@@ -4,6 +4,8 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import { useState } from 'react';
 
 const Propriedades = () => {
+  let [propriedades, setPropriedades] = useState([]);
+
   let [show, setShow] = useState(false);
   const handleShow = () => setShow(!show);
 
@@ -22,11 +24,25 @@ const Propriedades = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Segurei a vontade de despacho do browser!');
-    // fetch()
-    //   .then((response) => {})
-    //   .catch((error) => {});
-    setShow(!show);
+    //POST, PUT e DELETE
+    fetch('http://localhost:3000/propriedades', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    })
+      .then((response) => {
+        if (response.ok) {
+          //Adicionar na lista.
+          setPropriedades([...propriedades, inputs]);
+          //Fechar o modal.
+          setShow(!show);
+        }
+      })
+      .catch((error) => {});
   };
 
   return (
@@ -51,7 +67,10 @@ const Propriedades = () => {
       </div>
 
       {/* Clientes */}
-      <PropriedadesTable></PropriedadesTable>
+      <PropriedadesTable
+        propriedades={propriedades}
+        setPropriedades={setPropriedades}
+      ></PropriedadesTable>
 
       <Modal
         show={show}

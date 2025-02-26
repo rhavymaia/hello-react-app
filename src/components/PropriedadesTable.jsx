@@ -5,30 +5,24 @@ import {
   MDBTableBody,
   MDBTableHead,
 } from 'mdb-react-ui-kit';
-import clientes from '../datasets/clientes';
-import { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
 
-const PropriedadesTable = () => {
-  let [propriedades, setPropriedades] = useState([]);
-
-  const handleClick = (event) => {
+const PropriedadesTable = ({ propriedades, setPropriedades }) => {
+  const getPropriedades = (event) => {
     fetch('http://localhost:3000/propriedades')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPropriedades([...data]);
       })
       .catch((error) => {
         console.log('Deu erro!');
       });
   };
+
+  useEffect(getPropriedades, []);
+
   return (
     <>
-      <div>
-        <Button onClick={handleClick}>Listar</Button>
-      </div>
-
       <MDBTable hover>
         <MDBTableHead>
           <tr>
