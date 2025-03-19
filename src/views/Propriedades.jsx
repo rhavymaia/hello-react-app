@@ -111,7 +111,7 @@ const Propriedades = () => {
                       value={values.estado}
                     />
                     {errors.estado && touched.estado ? (
-                      <div>{errors.nome}</div>
+                      <div>{errors.estado}</div>
                     ) : null}
                   </Form.Group>
 
@@ -125,7 +125,7 @@ const Propriedades = () => {
                       value={values.cidade}
                     />
                     {errors.cidade && touched.cidade ? (
-                      <div>{errors.nome}</div>
+                      <div>{errors.cidade}</div>
                     ) : null}
                   </Form.Group>
 
@@ -140,7 +140,7 @@ const Propriedades = () => {
                       value={values.latitude}
                     />
                     {errors.latitude && touched.latitude ? (
-                      <div>{errors.nome}</div>
+                      <div>{errors.latitude}</div>
                     ) : null}
                   </Form.Group>
 
@@ -155,7 +155,7 @@ const Propriedades = () => {
                       value={values.longitude}
                     />
                     {errors.longitude && touched.longitude ? (
-                      <div>{errors.nome}</div>
+                      <div>{errors.longitude}</div>
                     ) : null}
                   </Form.Group>
                 </Modal.Body>
