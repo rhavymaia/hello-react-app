@@ -5,9 +5,12 @@ import {
   MDBTableBody,
   MDBTableHead,
 } from 'mdb-react-ui-kit';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import usePropriedade from '../context/PropriedadeContext';
 
-const PropriedadesTable = ({ propriedades, setPropriedades }) => {
+const PropriedadesTable = () => {
+  let { propriedades, setPropriedades } = usePropriedade();
+
   const getPropriedades = (event) => {
     fetch('http://localhost:3000/propriedades')
       .then((response) => response.json())

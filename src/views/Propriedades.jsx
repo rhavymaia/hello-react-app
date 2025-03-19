@@ -15,7 +15,7 @@ const Propriedades = () => {
     handleShow,
   } = usePropriedade();
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, actions) => {
     //POST, PUT e DELETE
     fetch('http://localhost:3000/propriedades', {
       method: 'POST',
@@ -40,6 +40,8 @@ const Propriedades = () => {
         // Toast.
         toast.error('Problema no envio dos dados da propriedade!');
       });
+
+    actions.setSubmitting(false);
   };
 
   return (
@@ -64,10 +66,7 @@ const Propriedades = () => {
       </div>
 
       {/* Clientes */}
-      <PropriedadesTable
-        propriedades={propriedades}
-        setPropriedades={setPropriedades}
-      ></PropriedadesTable>
+      <PropriedadesTable></PropriedadesTable>
 
       <Modal
         show={show}
@@ -83,7 +82,7 @@ const Propriedades = () => {
           validationSchema={propriedadeSchema}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched }) => {
+          {({ errors, touched, handleChange, handleSubmit, values }) => {
             return (
               <Form onSubmit={handleSubmit}>
                 <Modal.Body>
@@ -94,17 +93,40 @@ const Propriedades = () => {
                       placeholder="Sítio Aruara"
                       id="nome"
                       name="nome"
+                      onChange={handleChange}
+                      value={values.nome}
                     />
+                    {errors.nome && touched.nome ? (
+                      <div>{errors.nome}</div>
+                    ) : null}
                   </Form.Group>
 
                   <Form.Group className="mb-3">
                     <Form.Label>Estado</Form.Label>
-                    <Form.Control type="text" id="estado" name="estado" />
+                    <Form.Control
+                      type="text"
+                      id="estado"
+                      name="estado"
+                      onChange={handleChange}
+                      value={values.estado}
+                    />
+                    {errors.estado && touched.estado ? (
+                      <div>{errors.nome}</div>
+                    ) : null}
                   </Form.Group>
 
                   <Form.Group className="mb-3">
                     <Form.Label>Cidade</Form.Label>
-                    <Form.Control type="text" id="cidade" name="cidade" />
+                    <Form.Control
+                      type="text"
+                      id="cidade"
+                      name="cidade"
+                      onChange={handleChange}
+                      value={values.cidade}
+                    />
+                    {errors.cidade && touched.cidade ? (
+                      <div>{errors.nome}</div>
+                    ) : null}
                   </Form.Group>
 
                   <Form.Group className="mb-3">
@@ -114,7 +136,12 @@ const Propriedades = () => {
                       placeholder="12345.6789"
                       id="latitude"
                       name="latitude"
+                      onChange={handleChange}
+                      value={values.latitude}
                     />
+                    {errors.latitude && touched.latitude ? (
+                      <div>{errors.nome}</div>
+                    ) : null}
                   </Form.Group>
 
                   <Form.Group className="mb-3">
@@ -124,7 +151,12 @@ const Propriedades = () => {
                       placeholder="12345.6789"
                       id="longitude"
                       name="longitude"
+                      onChange={handleChange}
+                      value={values.longitude}
                     />
+                    {errors.longitude && touched.longitude ? (
+                      <div>{errors.nome}</div>
+                    ) : null}
                   </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
