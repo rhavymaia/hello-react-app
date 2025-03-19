@@ -32,6 +32,7 @@ const PropriedadesTable = ({ propriedades, setPropriedades }) => {
             <th scope="col">Cidade</th>
             <th scope="col">Latitude</th>
             <th scope="col">Longitude</th>
+            <th scope="col">Opções</th>
           </tr>
         </MDBTableHead>
         <MDBTableBody>
